@@ -16,7 +16,7 @@ function add_click_effect_to_card(cards) {
   });
 }
 
-// SEARCH MOVIES
+// Search Movie Code
 async function get_movie_by_search(search_term) {
   const resp = await fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search_term}`
@@ -41,7 +41,7 @@ async function add_searched_movies_to_dom() {
                 <div class="info">
                     <h2>${e.title}</h2>
                     <div class="single-info">
-                        <span>Rate: </span>
+                        <span>Rating: </span>
                         <span>${e.vote_average} / 10</span>
                     </div>
                     <div class="single-info">
@@ -58,7 +58,7 @@ async function add_searched_movies_to_dom() {
   add_click_effect_to_card(cards);
 }
 
-// POPUP
+// Popup Card Code
 async function get_movie_by_id(id) {
   const resp = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
@@ -165,7 +165,7 @@ async function show_popup(card) {
   });
 }
 
-// Local Storage
+// Local Storage Code
 function get_LS() {
   const movie_ids = JSON.parse(localStorage.getItem("movie-id"));
   return movie_ids === null ? [] : movie_ids;
@@ -182,9 +182,10 @@ function remove_LS(id) {
   );
 }
 
-// Favorite Movies
+// Favorite Movies Code
 fetch_favorite_movies();
 async function fetch_favorite_movies() {
+  main_grid_title.innerText = `My Favourite Movies....`;
   main_grid.innerHTML = "";
 
   const movies_LS = await get_LS();
@@ -206,7 +207,7 @@ function add_favorites_to_dom_from_LS(movie_data) {
             <div class="info">
                 <h2>${movie_data.title}</h2>
                 <div class="single-info">
-                    <span>Rate: </span>
+                    <span>Rating: </span>
                     <span>${movie_data.vote_average} / 10</span>
                 </div>
                 <div class="single-info">
@@ -221,9 +222,10 @@ function add_favorites_to_dom_from_LS(movie_data) {
   add_click_effect_to_card(cards);
 }
 
-// Trending Movies
+// Trending Movies Code
 get_trending_movies();
 async function get_trending_movies() {
+  // alert("hi")
   const resp = await fetch(
     `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`
   );
@@ -247,7 +249,7 @@ async function add_to_dom_trending() {
                 <div class="info">
                     <h2>${e.title}</h2>
                     <div class="single-info">
-                        <span>Rate: </span>
+                        <span>Rating: </span>
                         <span>${e.vote_average} / 10</span>
                     </div>
                     <div class="single-info">
